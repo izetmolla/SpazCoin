@@ -6,27 +6,27 @@ import { createAction } from '../../vendors/utils/createAction';
 import { sleep } from '../../vendors/utils/sleep';
 import AsyncStorage from '@react-native-community/async-storage';
 
-export function useAuth() {
-    const [state, dispatch] = React.useReducer(
-        (state, action) => {
+export function useRoot() {
+    const [rootData, dispatch] = React.useReducer(
+        (rootData, action) => {
             switch (action.type) {
                 case 'SET_USER':
                     return {
-                        ...state,
+                        ...rootData,
                         user: { ...action.payload },
                     };
                 case 'REMOVE_USER':
                     return {
-                        ...state,
+                        ...rootData,
                         user: undefined,
                     };
                 case 'SET_LOADING':
                     return {
-                        ...state,
+                        ...rootData,
                         loading: action.payload,
                     };
                 default:
-                    return state;
+                    return rootData;
             }
         },
         {
@@ -34,16 +34,16 @@ export function useAuth() {
             loading: true,
         },
     );
-    const auth = React.useMemo(
+    const rootFunctions = React.useMemo(
         () => ({
             login: async (email, password) => {
-                const { data } = await axios.post(`${BASE_URL}/v1/authorization/login`, {
+                const { data } = await axios.post(`${BASE_URL}/auth/local`, {
                     identifier: email,
                     password,
                 });
                 const user = {
-                    email: "izetmolla@gmail.com",
-                    token: "gfdgjsknjcrdfnjkensfjdk",
+                    email: data.user.email,
+                    token: data.jwt,
                 };
 
                 await AsyncStorage.setItem('user', JSON.stringify(user));
@@ -55,7 +55,7 @@ export function useAuth() {
             },
             register: async (email, password) => {
                 await sleep(2000);
-                await axios.post(`${BASE_URL}/v1/authorization/login`, {
+                await axios.post(`${BASE_URL}/auth/local/register`, {
                     username: email,
                     email,
                     password,
@@ -74,5 +74,5 @@ export function useAuth() {
             });
         });
     }, []);
-    return { auth, state };
+    return { rootFunctions, rootData };
 }

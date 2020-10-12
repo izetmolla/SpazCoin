@@ -6,44 +6,54 @@ import { createAction } from '../../vendors/utils/createAction';
 import { sleep } from '../../vendors/utils/sleep';
 import AsyncStorage from '@react-native-community/async-storage';
 
-export function useAuth() {
-    const [state, dispatch] = React.useReducer(
-        (state, action) => {
+export function useLocalStorage() {
+    const [localStorageData, dispatch] = React.useReducer(
+        (localStorageData, action) => {
             switch (action.type) {
                 case 'SET_USER':
                     return {
-                        ...state,
-                        user: { ...action.payload },
+                        ...localStorageData,
+                        data: { ...action.payload },
                     };
                 case 'REMOVE_USER':
                     return {
-                        ...state,
-                        user: undefined,
+                        ...localStorageData,
+                        data: undefined,
                     };
                 case 'SET_LOADING':
                     return {
-                        ...state,
+                        ...localStorageData,
                         loading: action.payload,
                     };
                 default:
-                    return state;
+                    return localStorageData;
             }
         },
         {
-            user: undefined,
+            data: undefined,
             loading: true,
         },
     );
-    const auth = React.useMemo(
+    const localStorage = React.useMemo(
         () => ({
+            storeData: async (p) => {
+                await AsyncStorage.setItem('@generalData', JSON.stringify(p));
+                dispatch(createAction('SET_STORE_DATA', p));
+            },
+            getData: async () => {
+                AsyncStorage.getItem('@generalData').then(p => {
+                    dispatch(createAction('SET_GET_DATA', JSON.parse(p)));
+                });
+            },
+
             login: async (email, password) => {
-                const { data } = await axios.post(`${BASE_URL}/v1/authorization/login`, {
+                const { data } = await axios.post(`${BASE_URL}/auth/local`, {
                     identifier: email,
                     password,
                 });
                 const user = {
-                    email: "izetmolla@gmail.com",
-                    token: "gfdgjsknjcrdfnjkensfjdk",
+                    email: data.user.email,
+                    token: data.jwt,
                 };
 
                 await AsyncStorage.setItem('user', JSON.stringify(user));
@@ -55,7 +65,7 @@ export function useAuth() {
             },
             register: async (email, password) => {
                 await sleep(2000);
-                await axios.post(`${BASE_URL}/v1/authorization/login`, {
+                await axios.post(`${BASE_URL}/auth/local/register`, {
                     username: email,
                     email,
                     password,
@@ -65,14 +75,9 @@ export function useAuth() {
         [],
     );
     React.useEffect(() => {
-        sleep(2000).then(() => {
-            AsyncStorage.getItem('user').then(user => {
-                if (user) {
-                    dispatch(createAction('SET_USER', JSON.parse(user)));
-                }
-                dispatch(createAction('SET_LOADING', false));
-            });
-        });
+
+        dispatch(createAction('SET_GET_DATA'));
+        dispatch(createAction('SET_LOADING', false));
     }, []);
-    return { auth, state };
+    return { localStorage, localStorageData };
 }

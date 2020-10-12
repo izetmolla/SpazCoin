@@ -19,6 +19,7 @@
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		A78B5E533DED1506DED26EE7 /* libPods-SpazCoin-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7971C7E009CAFD0EED96D986 /* libPods-SpazCoin-tvOS.a */; };
 		DAB8872A8DBACFB97B0C34A5 /* libPods-SpazCoin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C53E12FCF1378D24F558AD90 /* libPods-SpazCoin.a */; };
+		F4CB98D22534D0FA0079FEE6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F4CB98D12534D0FA0079FEE6 /* GoogleService-Info.plist */; };
 		F8AC5EA5211E6E991F42D709 /* libPods-SpazCoin-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A9C1957A31C95FBB5AE55FC /* libPods-SpazCoin-tvOSTests.a */; };
 /* End PBXBuildFile section */
 
@@ -67,6 +68,7 @@
 		E8BB02BC06F39001D6C033C7 /* Pods-SpazCoin-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpazCoin-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-SpazCoin-tvOSTests/Pods-SpazCoin-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
+		F4CB98D12534D0FA0079FEE6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +127,7 @@
 		13B07FAE1A68108700A75B9A /* SpazCoin */ = {
 			isa = PBXGroup;
 			children = (
+				F4CB98D12534D0FA0079FEE6 /* GoogleService-Info.plist */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -194,7 +197,6 @@
 				E8BB02BC06F39001D6C033C7 /* Pods-SpazCoin-tvOSTests.debug.xcconfig */,
 				DA6C93A23701D30828534F98 /* Pods-SpazCoin-tvOSTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -232,7 +234,7 @@
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				754684184255E5C1A95130DD /* [CP] Copy Pods Resources */,
-				D720EB1610FB561F3241CDEA /* [CP-User] [RNFB] Core Configuration */,
+				EDA5A609559820E6EE8B21AD /* [CP-User] [RNFB] Core Configuration */,
 			);
 			buildRules = (
 			);
@@ -295,6 +297,7 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
+						DevelopmentTeam = M56644QBQ5;
 						LastSwiftMigration = 1120;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
@@ -343,6 +346,7 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				F4CB98D22534D0FA0079FEE6 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -516,7 +520,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SpazCoin-SpazCoinTests/Pods-SpazCoin-SpazCoinTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D720EB1610FB561F3241CDEA /* [CP-User] [RNFB] Core Configuration */ = {
+		EDA5A609559820E6EE8B21AD /* [CP-User] [RNFB] Core Configuration */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -667,6 +671,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = M56644QBQ5;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = SpazCoin/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -675,7 +680,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.spazcoin;
 				PRODUCT_NAME = SpazCoin;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -690,6 +695,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = M56644QBQ5;
 				INFOPLIST_FILE = SpazCoin/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -697,7 +703,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.spazcoin;
 				PRODUCT_NAME = SpazCoin;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
