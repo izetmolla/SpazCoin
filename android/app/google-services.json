@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1095411403109",
+    "firebase_url": "https://spazcoin-9c00b.firebaseio.com",
+    "project_id": "spazcoin-9c00b",
+    "storage_bucket": "spazcoin-9c00b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1095411403109:android:58148f6265c4683d77b98c",
+        "android_client_info": {
+          "package_name": "com.spazcoin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1095411403109-4m717nohmtpakj9k9ndqqd25ouru9t2s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.spazcoin",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "1095411403109-je4s63bln7q2h2rm5q1t26119ft69b3d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAsJMlJxluIXdf6Bg1X4nwK1gNo3-aYwLc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1095411403109-je4s63bln7q2h2rm5q1t26119ft69b3d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
