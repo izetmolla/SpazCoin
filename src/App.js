@@ -65,17 +65,22 @@ export default function () {
         function onOpenNotification(notify) {
             console.log("[App] onOpenNotification: ", notify)
 
+
+            console.log(' navigator --- ', navigate)
+            console.log(' navigator --- ', navigate)
+            console.log('navigationRef.current.getRootState() --- ', navigationRef.current.getRootState())
+            navigate("AuthStack", {
+                screen: "AccountScreen",
+                params: { activityId: 1 }
+            })
+
+
+
             // alert("Open Notification: " + notify.body)
         }
 
 
-        console.log(' navigator --- ', navigate)
-        console.log(' navigator --- ', navigate)
-        console.log('navigationRef.current.getRootState() --- ', navigationRef.current.getRootState())
-        navigate("AuthStack", {
-            screen: "AccountScreen",
-            params: { activityId: 1 }
-        })
+
 
         return () => {
             console.log("[App] unRegister")
