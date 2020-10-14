@@ -8,7 +8,7 @@ const MainStack = createStackNavigator();
 export function PrivateStackNavigator() {
     return (
         <MainStack.Navigator>
-            <MainStack.Screen name={'ProductsList'} component={HomeScreen} options={{ title: 'Home Screen', }} />
+            <MainStack.Screen name={'HomeScreen'} component={HomeScreen} options={{ title: 'Home Screen', }} />
             <MainStack.Screen name={'AccountScreen'} component={AccountScreen} options={{ title: 'Account Screen', }} />
         </MainStack.Navigator>
     );

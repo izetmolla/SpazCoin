@@ -23,10 +23,10 @@ import { useAuth } from './app/hooks/useAuth';
 import { useRoot } from './app/hooks/useRoot';
 
 
-import { Linking, StatusBar, View } from 'react-native';
+import { StatusBar, View } from 'react-native';
 import { useDarkMode } from 'react-native-dark-mode';
-import { SplashScreenStatic } from './resources/screens/SplashScreenStatic';
-import { RedirectingScreen } from './resources/screens/RedirectingScreen';
+import { AccountScreen } from './resources/screens/AccountScreen';
+import { HomeScreen } from './resources/screens/HomeScreen';
 
 const RootStack = createStackNavigator();
 
@@ -37,21 +37,14 @@ export default function () {
         setIsDarkMode(!isDarkMode);
     }, [isDarkMode]);
 
+    const [aaa, setAaa] = React.useState(false);
+
+
     React.useEffect(() => {
-
-        Linking.getInitialURL().then(url => {
-            if (url) {
-                navigate("RedirectingScreen", {
-                    type: "deeplink",
-                    data: url.replace(/.*?:\/\//g, '')
-                })
-            }
-
-        });
-
-
         console.log('navigationRef.current.getRootState() --- ', navigationRef.current.getRootState())
         console.log('navigationRef.current.getRootState() --- ', isReadyRef.current)
+
+
 
         return () => {
             console.log("[App] unRegister")
@@ -61,22 +54,9 @@ export default function () {
 
 
 
-    function renderScreens() {
-        if (state.loading) {
-            return <RootStack.Screen name={'Splash'} component={SplashScreenStatic} />;
-        }
-        return state.user ? (
-            <RootStack.Screen name={'MainStack'}>
-                {() => (
-                    <UserContext.Provider value={state.user}>
-                        <PrivateStackNavigator />
-                    </UserContext.Provider>
-                )}
-            </RootStack.Screen>
-        ) : (
-                <RootStack.Screen name={'AuthStack'} component={PublicStackNavigator} />
-            );
-    }
+    // if (state.loading) {
+    //     return (<View style={{ flex: 1, backgroundColor: "red" }} />)
+    // }
 
 
     return (
@@ -88,16 +68,14 @@ export default function () {
                         theme={isDarkMode ? darkTheme : lightTheme}
                         ref={navigationRef}
                         onReady={() => { isReadyRef.current = true }}
-                        fallback={<View />}
+                        fallback={() => {
+                            console.log(123)
+                            return <View />
+                        }}
                     >
-                        <RootStack.Navigator
-                            screenOptions={{
-                                headerShown: false,
-                                animationEnabled: false,
-                            }}>
-                            {renderScreens()}
-                            <RootStack.Screen name={'RedirectingScreen'} component={RedirectingScreen} />
-
+                        <RootStack.Navigator screenOptions={{ headerShown: false, animationEnabled: false, }}>
+                            <RootStack.Screen name={'HomeScreen'} component={HomeScreen} options={{ title: 'Home Screen', }} />
+                            <RootStack.Screen name={'AccountScreen'} component={AccountScreen} options={{ title: 'Account Screen', }} />
                         </RootStack.Navigator>
                     </NavigationContainer>
                 </AuthContext.Provider>

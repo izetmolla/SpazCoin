@@ -5,9 +5,10 @@ import { View, FlatList, StyleSheet, Text } from 'react-native';
 
 export function AccountScreen({ navigation }) {
 
+
     return (
-        <View>
-            <Text>Account Screen</Text>
+        <View style={{ flex: 1, justifyContent: "center", alignContent: "center", alignItems: "center" }}>
+            <Text style={{ fontWeight: "bold", fontSize: 25 }}>Account Screen</Text>
         </View>
     );
 }

@@ -65,13 +65,11 @@ export function useAuth() {
         [],
     );
     React.useEffect(() => {
-        sleep(2000).then(() => {
-            AsyncStorage.getItem('user').then(user => {
-                if (user) {
-                    dispatch(createAction('SET_USER', JSON.parse(user)));
-                }
-                dispatch(createAction('SET_LOADING', false));
-            });
+        AsyncStorage.getItem('user').then(user => {
+            if (user) {
+                dispatch(createAction('SET_USER', JSON.parse(user)));
+            }
+            dispatch(createAction('SET_LOADING', false));
         });
     }, []);
     return { auth, state };
